@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "LeetCode Tracker",
+            "group": "Leetcode_Group",
+            "database": "postgres",
+            "username": "postgres",
+            "password": "1658"
+        }
+    ],
+    "python.analysis.autoImportCompletions": true
+}
