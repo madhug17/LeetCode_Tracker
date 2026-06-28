@@ -8,3 +8,4 @@ env/
 *.log
 .pytest_cache/
 .DS_Store
+get-pip.py
