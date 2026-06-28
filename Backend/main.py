@@ -15,7 +15,7 @@ from services.background_jobs import scheduler
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
-# Home Route
+
 
 @app.get("/")
 def home():
@@ -23,7 +23,6 @@ def home():
         "message": "LeetCode Tracker API Running 🚀"
     }
 
-# Include Routers
 
 app.include_router(auth_router)
 app.include_router(problem_router)
