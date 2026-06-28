@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from database.db import get_db
 from core.dependencies import get_current_user
 from services.dashboard_service import get_dashboard_stats,get_user_progress
+from services.ai_service import generate_ai_recommendantion
 router = APIRouter()
 @router.get('/stats')
 def dashboard_stats(
@@ -21,4 +22,11 @@ def user_progress(
     return get_user_progress(
         db,
         current_user
+    )
+@router.get('/ai-recommendation')
+def ai_recommendation(
+    currrent_user=Depends(get_current_user)
+):
+    return generate_ai_recommendantion(
+        currrent_user.problems 
     )

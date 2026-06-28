@@ -1,6 +1,7 @@
 SELECT * FROM "problems";
 SELECT * FROM "Users";
 SELECT * FROM "Notification";
+DROP TABLE problems;
 TRUNCATE TABLE "Users" RESTART IDENTITY CASCADE;
 DROP TABLE "Users" CASCADE;
 

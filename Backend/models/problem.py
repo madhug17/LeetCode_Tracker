@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Boolean, Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from database.db import Base
@@ -21,4 +21,15 @@ class Problem(Base):
     user = relationship(
         "User",
         back_populates="problems"
+    )
+    topic = Column(
+        String,nullable=True
+    )
+    attempts = Column(
+        Integer,
+        default=1
+    )
+    is_solved = Column(
+        Boolean,
+        default=False
     )
