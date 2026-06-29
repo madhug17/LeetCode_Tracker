@@ -158,7 +158,7 @@ def get_cache_profile(
 ):
     return{
         "leetcode_username": current_user.leetcode_username,
-        "ranking":current_user.ranking,
+        "ranking":current_user.leetcode_ranking,
         "easy_solved":current_user.easy_solved,
         "medium_solved":current_user.medium_solved,
         'hard_solved':current_user.hard_solved,
@@ -166,7 +166,7 @@ def get_cache_profile(
         "contest_rating":current_user.contest_rating,
         "contest_global_ranking":current_user.contest_global_ranking,
         "contest_top_percentage":current_user.contest_top_percentage,
-        "contests_attended":current_user.contests_attended,
+        "contests_attended":current_user.contest_attended,
         "last_synced":current_user.last_synced
     }
 

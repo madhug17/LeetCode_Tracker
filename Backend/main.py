@@ -11,9 +11,17 @@ from routers.notification import router as notification_router
 #from routers.payment import router as payment_router
 from routers.dashboard import router as dashboard_router
 from services.background_jobs import scheduler
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"],
+)
 
 
 

@@ -30,3 +30,18 @@ def ai_recommendation(
     return generate_ai_recommendantion(
         currrent_user.problems 
     )
+@router.get("/profile")
+def get_profile(
+    current_user = Depends(get_current_user)
+):
+    return {
+        "username": current_user.username,
+        "email": current_user.email,
+        "leetcode_username": current_user.leetcode_username,
+        "easy_solved": current_user.easy_solved, 
+        "medium_solved": current_user.medium_solved, 
+        "hard_solved": current_user.hard_solved, 
+        "total_solved": current_user.total_solved, 
+        "contest_rating": current_user.contest_rating
+
+    }

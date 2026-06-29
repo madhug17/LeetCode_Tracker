@@ -1,4 +1,4 @@
-import token
+
 
 from models.user import User
 from core.dependencies import get_current_user
