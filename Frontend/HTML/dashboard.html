@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,19 +39,19 @@
 
 <div class="container">
 
-    <!-- PROFILE  -->
+    <!-- PROFILE -->
 
     <div class="card">
 
         <h2>
 
-            LeetCode Profile 
+            LeetCode Profile
 
         </h2>
 
         <button id="syncBtn">
 
-            Sync Profile 
+            Sync Profile
 
         </button>
 
@@ -65,13 +64,13 @@
 
     </div>
 
-    <!-- ADD PROBLEM  -->
+    <!-- ADD PROBLEM -->
 
     <div class="card">
 
         <h2>
 
-            Add Problem 
+            Add Problem
 
         </h2>
 
@@ -127,7 +126,7 @@
 
             <button type="submit">
 
-                Add Problem 
+                Add Problem
 
             </button>
 
@@ -135,13 +134,13 @@
 
     </div>
 
-    <!-- TABLE  -->
+    <!-- TABLE -->
 
     <div class="card">
 
         <h2>
 
-            Your Problems 
+            Your Problems
 
         </h2>
 
@@ -161,33 +160,126 @@
 
             </thead>
 
-            <tbody id="problemTable">
+            <tbody id="problemTableBody">
 
             </tbody>
 
         </table>
 
-        <div class="card">
-            <h2>
-                AI Recommendation
-            </h2>
-            <button id="loadRecommendation">
-                Load AI Recommendation
-            </button>
-            <div id="result">
-                
-            </div>
+    </div>
+
+    <!-- ANALYTICS -->
+
+    <div class="card">
+
+        <h2>
+
+            Analytics 
+
+        </h2>
+
+        <canvas id="difficultyChart"></canvas>
+
+        <br><br>
+
+        <canvas id="topicChart"></canvas>
+
+    </div>
+    <!-- Streak-->
+    <div class="card">
+        <h2>
+            Streak 
+        </h2>
+        <div
+        id="streakCard"
+        class="profile-grid"
+        >
+            
+        </div>
+    </div>
+    <!-- PREMIUM  -->
+
+<!--<div class="card premium-card">
+
+    <h2>
+
+         Premium Features
+
+    </h2>
+
+    <div class="premium-grid">
+
+        <div class="premium-box">
+
+             Advanced AI Analytics
+
+        </div>
+
+        <div class="premium-box">
+
+
+             Full Year Heatmap
+
+        </div>
+
+        <div class="premium-box">
+
+             Personalized DSA Roadmap
+
+        </div>
+
+        <div class="premium-box locked">
+
+             Mock Interview AI
+
+        </div>
+
+    </div>
+
+    <button class="premium-btn">
+
+        Upgrade To Premium 
+
+    </button>
+
+</div>
+
+    <!-- AI -->
+
+    <div class="card">
+
+        <h2>
+
+            AI Recommendation 
+
+        </h2>
+
+        <button id="loadRecommendation">
+
+            Load AI Recommendation
+
+        </button>
+
+        <div id="result">
+
         </div>
 
     </div>
 
 </div>
 
+<!-- CHART JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- API -->
+
 <script src="../js/api.js"></script>
+
+<!-- DASHBOARD -->
 
 <script src="../js/dashboard.js"></script>
 
 </body>
 
 </html>
-

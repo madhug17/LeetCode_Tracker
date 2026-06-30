@@ -12,6 +12,7 @@ from routers.notification import router as notification_router
 from routers.dashboard import router as dashboard_router
 from services.background_jobs import scheduler
 from fastapi.middleware.cors import CORSMiddleware
+from routers import streak
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
@@ -36,6 +37,7 @@ app.include_router(auth_router)
 app.include_router(problem_router)
 app.include_router(leetcode_router)
 app.include_router(notification_router)
+app.include_router(streak.router)
 
 #app.include_router(payment_router)
 

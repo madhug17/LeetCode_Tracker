@@ -1,4 +1,4 @@
-console.log("dashboard loaded 😎🔥")
+console.log("dashboard loaded ")
 
 /* =========================
    TOKEN 😎🔥
@@ -9,16 +9,7 @@ localStorage.getItem(
     "token"
 )
 
-console.log(
-    "TOKEN FROM STORAGE 😎🔥",
-    token
-)
-
 if(!token){
-
-    alert(
-        "No token found 😭🔥"
-    )
 
     window.location.href =
     "login.html"
@@ -26,7 +17,7 @@ if(!token){
 }
 
 /* =========================
-   LOAD PROFILE 
+   PROFILE 😎🔥
 ========================= */
 
 async function loadProfile(){
@@ -40,8 +31,6 @@ async function loadProfile(){
 
             {
 
-                method:"GET",
-
                 headers:{
 
                     Authorization:
@@ -53,16 +42,7 @@ async function loadProfile(){
 
         )
 
-        console.log(
-            "PROFILE RESPONSE ",
-            response
-        )
-
         if(response.status === 401){
-
-            alert(
-                "Session expired 😭🔥"
-            )
 
             localStorage.removeItem(
                 "token"
@@ -78,15 +58,13 @@ async function loadProfile(){
         const data =
         await response.json()
 
-        console.log(data)
-
         document.getElementById(
             "profileCard"
         ).innerHTML = `
 
         <div class="stat-card easy">
 
-            <h3>Easy 😎🔥</h3>
+            <h3>Easy </h3>
 
             <p>${data.easy_solved}</p>
 
@@ -94,7 +72,7 @@ async function loadProfile(){
 
         <div class="stat-card medium">
 
-            <h3>Medium 🚀</h3>
+            <h3>Medium </h3>
 
             <p>${data.medium_solved}</p>
 
@@ -102,7 +80,7 @@ async function loadProfile(){
 
         <div class="stat-card hard">
 
-            <h3>Hard 😭🔥</h3>
+            <h3>Hard </h3>
 
             <p>${data.hard_solved}</p>
 
@@ -126,7 +104,7 @@ async function loadProfile(){
 
         <div class="stat-card">
 
-            <h3>Contest Rating</h3>
+            <h3>Contest</h3>
 
             <p>${data.contest_rating}</p>
 
@@ -140,16 +118,12 @@ async function loadProfile(){
 
         console.log(error)
 
-        alert(
-            "Profile loading failed 😭🔥"
-        )
-
     }
 
 }
 
 /* =========================
-   SYNC PROFILE 😎🔥
+   SYNC 😎🔥
 ========================= */
 
 document
@@ -158,7 +132,7 @@ document
 )
 .addEventListener(
 "click",
-async ()=>{
+async()=>{
 
     try{
 
@@ -182,15 +156,8 @@ async ()=>{
 
         )
 
-        console.log(
-            "SYNC RESPONSE 😎🔥",
-            response
-        )
-
         const data =
         await response.json()
-
-        console.log(data)
 
         alert(
             data.message
@@ -203,10 +170,6 @@ async ()=>{
     catch(error){
 
         console.log(error)
-
-        alert(
-            "Sync failed 😭🔥"
-        )
 
     }
 
@@ -222,44 +185,42 @@ document
 )
 .addEventListener(
 "submit",
-async (e)=>{
+async(e)=>{
 
     e.preventDefault()
 
-    try{
+    const payload = {
 
-        const payload = {
+        title:
+        document.getElementById(
+            "title"
+        ).value,
 
-            title:
+        difficulty:
+        document.getElementById(
+            "difficulty"
+        ).value,
+
+        topic:
+        document.getElementById(
+            "topic"
+        ).value,
+
+        time_spend:
+        parseInt(
             document.getElementById(
-                "title"
-            ).value,
-
-            difficulty:
-            document.getElementById(
-                "difficulty"
-            ).value,
-
-            topic:
-            document.getElementById(
-                "topic"
-            ).value,
-
-            time_spend:
-            parseInt(
-                document.getElementById(
-                    "time_spend"
-                ).value
-            ),
-
-            notes:
-            document.getElementById(
-                "notes"
+                "time_spend"
             ).value
+        ),
 
-        }
+        notes:
+        document.getElementById(
+            "notes"
+        ).value
 
-        console.log(payload)
+    }
+
+    try{
 
         const response =
         await fetch(
@@ -280,14 +241,13 @@ async (e)=>{
 
                 },
 
-                body:
-                JSON.stringify(payload)
+                body:JSON.stringify(
+                    payload
+                )
 
             }
 
         )
-
-        console.log(response)
 
         const data =
         await response.json()
@@ -295,7 +255,7 @@ async (e)=>{
         console.log(data)
 
         alert(
-            "Problem Added 😎🔥"
+            "Problem Added "
         )
 
         document.getElementById(
@@ -309,10 +269,6 @@ async (e)=>{
     catch(error){
 
         console.log(error)
-
-        alert(
-            "Failed to add problem 😭🔥"
-        )
 
     }
 
@@ -333,8 +289,6 @@ async function loadProblems(){
 
             {
 
-                method:"GET",
-
                 headers:{
 
                     Authorization:
@@ -346,26 +300,19 @@ async function loadProblems(){
 
         )
 
-        console.log(response)
-
-        const data =
+        const problems =
         await response.json()
 
-        console.log(
-            "PROBLEMS 😎🔥",
-            data
-        )
-
-        const table =
+        const tableBody =
         document.getElementById(
-            "problemTable"
+            "problemTableBody"
         )
 
-        table.innerHTML = ""
+        tableBody.innerHTML = ""
 
-        data.forEach(problem => {
+        problems.forEach(problem=>{
 
-            table.innerHTML += `
+            tableBody.innerHTML += `
 
             <tr>
 
@@ -375,23 +322,13 @@ async function loadProblems(){
 
                 <td>${problem.topic}</td>
 
-                <td>${problem.time_spend}</td>
+                <td>${problem.time_spend} min</td>
 
                 <td>
 
-                    <button
-                    onclick="editProblem(${problem.id})"
-                    >
+                    <button onclick="deleteProblem(${problem.id})">
 
-                    Edit
-
-                    </button>
-
-                    <button
-                    onclick="deleteProblem(${problem.id})"
-                    >
-
-                    Delete
+                        Delete
 
                     </button>
 
@@ -402,6 +339,8 @@ async function loadProblems(){
             `
 
         })
+
+        loadCharts(problems)
 
     }
 
@@ -453,54 +392,201 @@ async function deleteProblem(id){
 }
 
 /* =========================
-   EDIT 😎🔥
+   CHARTS 😎🔥
 ========================= */
 
-async function editProblem(id){
+let difficultyChart
+let topicChart
 
-    const title =
-    prompt(
-        "Enter new title 😎🔥"
-    )
+function loadCharts(problems){
 
-    if(!title){
+    const difficultyCount = {
 
-        return
+        Easy:0,
+        Medium:0,
+        Hard:0
 
     }
 
+    const topicCount = {}
+
+    problems.forEach(problem=>{
+
+        difficultyCount[
+            problem.difficulty
+        ]++
+
+        if(topicCount[problem.topic]){
+
+            topicCount[
+                problem.topic
+            ]++
+
+        }
+
+        else{
+
+            topicCount[
+                problem.topic
+            ] = 1
+
+        }
+
+    })
+
+    const diffCtx =
+    document.getElementById(
+        "difficultyChart"
+    )
+
+    if(difficultyChart){
+
+        difficultyChart.destroy()
+
+    }
+
+    difficultyChart =
+    new Chart(diffCtx,{
+
+        type:"doughnut",
+
+        data:{
+
+            labels:[
+                "Easy",
+                "Medium",
+                "Hard"
+            ],
+
+            datasets:[{
+
+                data:[
+
+                    difficultyCount.Easy,
+                    difficultyCount.Medium,
+                    difficultyCount.Hard
+
+                ],
+
+                backgroundColor:[
+
+                    "#22C55E",
+                    "#F59E0B",
+                    "#EF4444"
+
+                ]
+
+            }]
+
+        }
+
+    })
+
+    const topicCtx =
+    document.getElementById(
+        "topicChart"
+    )
+
+    if(topicChart){
+
+        topicChart.destroy()
+
+    }
+
+    topicChart =
+    new Chart(topicCtx,{
+
+        type:"bar",
+
+        data:{
+
+            labels:
+            Object.keys(topicCount),
+
+            datasets:[{
+
+                label:"Problems",
+
+                data:
+                Object.values(topicCount),
+
+                backgroundColor:"#38BDF8"
+
+            }]
+
+        }
+
+    })
+
+}
+/// Streak ///]
+async function loadStreak(){
+
     try{
 
+        const response =
         await fetch(
 
-            `http://127.0.0.1:8000/problems/${id}`,
+            "http://127.0.0.1:8000/streak/all",
 
             {
 
-                method:"PUT",
-
                 headers:{
-
-                    "Content-Type":
-                    "application/json",
 
                     Authorization:
                     `Bearer ${token}`
 
-                },
-
-                body:
-                JSON.stringify({
-
-                    title:title
-
-                })
+                }
 
             }
 
         )
 
-        loadProblems()
+        const data =
+        await response.json()
+
+        console.log(
+            "STREAK ",
+            data
+        )
+
+        document.getElementById(
+            "streakCard"
+        ).innerHTML = `
+
+        <div class="stat-card">
+
+            <h3> Current</h3>
+
+            <p>${data.current_streak}</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3> Longest</h3>
+
+            <p>${data.longest_streak}</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3> Active Days</h3>
+
+            <p>${data.active_days}</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3> Consistency</h3>
+
+            <p>${data.consistency_percentage}%</p>
+
+        </div>
+
+        `
 
     }
 
@@ -511,6 +597,67 @@ async function editProblem(id){
     }
 
 }
+
+/* =========================
+   AI 😎🔥
+========================= */
+
+document
+.getElementById(
+    "loadRecommendation"
+)
+.addEventListener(
+"click",
+async()=>{
+
+    try{
+
+        const response =
+        await fetch(
+
+            "http://127.0.0.1:8000/dashboard/ai-recommendation",
+
+            {
+
+                headers:{
+
+                    Authorization:
+                    `Bearer ${token}`
+
+                }
+
+            }
+
+        )
+
+        const data =
+        await response.json()
+
+        let html = ""
+
+        data.message.forEach(msg=>{
+
+            html += `
+
+            <p> ${msg}</p>
+
+            `
+
+        })
+
+        document.getElementById(
+            "result"
+        ).innerHTML = html
+
+    }
+
+    catch(error){
+
+        console.log(error)
+
+    }
+
+})
 
 /* =========================
    LOGOUT 😎🔥
@@ -533,47 +680,10 @@ document
 
 })
 
-// AI Recommendation
-document.getElementById("loadRecommendation")
-.addEventListener(
-    "click",
-    async()=>{
-        try{
-            const response = await fetch(
-                "http://127.0.0.1:8000/dashboard/ai-recommendation",
-                {
-                    method:"GET",
-                    headers:{
-                        Authorization:
-                        `Bearer ${token}`
-                    }
-                }
-            )
-            const data = await response.json()
-            console.log(data)
-            document.getElementById(
-                "result"
-            ).innerHTML=`
-            <h3>Weak Topics 😭🔥</h3>
-            <p>${data.weak_topics}</p> 
-            <h3>Strong Topics 😎🔥</h3> 
-            <p>${data.strong_topics}</p> 
-            <h3>Recommendation 🚀</h3> 
-            <p>${data.message}</p>
-            `
-        }
-        catch(error){
-            console.log(error)
-        }
-    }
-)
-
-
-
 /* =========================
-   AUTO LOAD 😎🔥
+   INITIAL LOAD 😎🔥
 ========================= */
 
-loadProfile()
+loadProfile()-
 loadProblems()
-
+loadStreak()
