@@ -1,34 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
+
     <title>Dashboard</title>
+
     <link
         rel="stylesheet"
         href="../css/style.css"
     >
+
 </head>
+
 <body>
+
 <div class="navbar">
+
     <h2>
-        LeetCode Tracker 😎🔥
+
+        LeetCode Tracker 
+
     </h2>
+
     <button id="logoutBtn">
-        Logout 
+
+        Logout
+
     </button>
 
 </div>
 
 <div class="container">
 
+    <!-- PROFILE  -->
+
     <div class="card">
 
         <h2>
+
             LeetCode Profile 
+
         </h2>
 
         <button id="syncBtn">
@@ -46,6 +65,110 @@
 
     </div>
 
+    <!-- ADD PROBLEM  -->
+
+    <div class="card">
+
+        <h2>
+
+            Add Problem 
+
+        </h2>
+
+        <form id="problemForm">
+
+            <input
+                type="text"
+                placeholder="Problem Title"
+                id="title"
+                required
+            >
+
+            <select id="difficulty">
+
+                <option value="Easy">
+
+                    Easy
+
+                </option>
+
+                <option value="Medium">
+
+                    Medium
+
+                </option>
+
+                <option value="Hard">
+
+                    Hard
+
+                </option>
+
+            </select>
+
+            <input
+                type="text"
+                placeholder="Topic"
+                id="topic"
+                required
+            >
+
+            <input
+                type="number"
+                placeholder="Time Spent"
+                id="time_spend"
+                required
+            >
+
+            <textarea
+                id="notes"
+                placeholder="Notes"
+            ></textarea>
+
+            <button type="submit">
+
+                Add Problem 
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- TABLE  -->
+
+    <div class="card">
+
+        <h2>
+
+            Your Problems 
+
+        </h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Title</th>
+                    <th>Difficulty</th>
+                    <th>Topic</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="problemTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
 </div>
 
 <script src="../js/api.js"></script>
@@ -55,3 +178,4 @@
 </body>
 
 </html>
+
