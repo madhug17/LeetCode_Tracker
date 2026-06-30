@@ -1,31 +1,29 @@
 console.log("dashboard loaded ")
 
+let allProblems = []
+let showAllProblems = false
+
 /* =========================
-   TOKEN 😎🔥
+   TOKEN
 ========================= */
 
-const token =
-localStorage.getItem(
-    "token"
-)
+const token = localStorage.getItem("token")
 
 if(!token){
 
-    window.location.href =
-    "login.html"
+    window.location.href = "login.html"
 
 }
 
 /* =========================
-   PROFILE 😎🔥
+   PROFILE
 ========================= */
 
 async function loadProfile(){
 
     try{
 
-        const response =
-        await fetch(
+        const response = await fetch(
 
             "http://127.0.0.1:8000/leetcode/profile",
 
@@ -33,8 +31,7 @@ async function loadProfile(){
 
                 headers:{
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 }
 
@@ -42,72 +39,38 @@ async function loadProfile(){
 
         )
 
-        if(response.status === 401){
+        const data = await response.json()
 
-            localStorage.removeItem(
-                "token"
-            )
-
-            window.location.href =
-            "login.html"
-
-            return
-
-        }
-
-        const data =
-        await response.json()
-
-        document.getElementById(
-            "profileCard"
-        ).innerHTML = `
+        document.getElementById("profileCard").innerHTML = `
 
         <div class="stat-card easy">
-
-            <h3>Easy </h3>
-
+            <h3>Easy</h3>
             <p>${data.easy_solved}</p>
-
         </div>
 
         <div class="stat-card medium">
-
-            <h3>Medium </h3>
-
+            <h3>Medium</h3>
             <p>${data.medium_solved}</p>
-
         </div>
 
         <div class="stat-card hard">
-
-            <h3>Hard </h3>
-
+            <h3>Hard</h3>
             <p>${data.hard_solved}</p>
-
         </div>
 
         <div class="stat-card">
-
             <h3>Total</h3>
-
             <p>${data.total_solved}</p>
-
         </div>
 
         <div class="stat-card">
-
             <h3>Ranking</h3>
-
             <p>${data.ranking}</p>
-
         </div>
 
         <div class="stat-card">
-
             <h3>Contest</h3>
-
             <p>${data.contest_rating}</p>
-
         </div>
 
         `
@@ -123,21 +86,17 @@ async function loadProfile(){
 }
 
 /* =========================
-   SYNC 😎🔥
+   SYNC
 ========================= */
 
-document
-.getElementById(
-    "syncBtn"
-)
+document.getElementById("syncBtn")
 .addEventListener(
 "click",
 async()=>{
 
     try{
 
-        const response =
-        await fetch(
+        const response = await fetch(
 
             "http://127.0.0.1:8000/leetcode/sync",
 
@@ -147,8 +106,7 @@ async()=>{
 
                 headers:{
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 }
 
@@ -156,12 +114,9 @@ async()=>{
 
         )
 
-        const data =
-        await response.json()
+        const data = await response.json()
 
-        alert(
-            data.message
-        )
+        alert(data.message)
 
         loadProfile()
 
@@ -176,13 +131,10 @@ async()=>{
 })
 
 /* =========================
-   ADD PROBLEM 😎🔥
+   ADD PROBLEM
 ========================= */
 
-document
-.getElementById(
-    "problemForm"
-)
+document.getElementById("problemForm")
 .addEventListener(
 "submit",
 async(e)=>{
@@ -191,38 +143,22 @@ async(e)=>{
 
     const payload = {
 
-        title:
-        document.getElementById(
-            "title"
-        ).value,
+        title:document.getElementById("title").value,
 
-        difficulty:
-        document.getElementById(
-            "difficulty"
-        ).value,
+        difficulty:document.getElementById("difficulty").value,
 
-        topic:
-        document.getElementById(
-            "topic"
-        ).value,
+        topic:document.getElementById("topic").value,
 
-        time_spend:
-        parseInt(
-            document.getElementById(
-                "time_spend"
-            ).value
+        time_spend:parseInt(
+            document.getElementById("time_spend").value
         ),
 
-        notes:
-        document.getElementById(
-            "notes"
-        ).value
+        notes:document.getElementById("notes").value
 
     }
 
     try{
 
-        const response =
         await fetch(
 
             "http://127.0.0.1:8000/problems/add",
@@ -233,36 +169,25 @@ async(e)=>{
 
                 headers:{
 
-                    "Content-Type":
-                    "application/json",
+                    "Content-Type":"application/json",
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 },
 
-                body:JSON.stringify(
-                    payload
-                )
+                body:JSON.stringify(payload)
 
             }
 
         )
 
-        const data =
-        await response.json()
+        alert("Problem Added ")
 
-        console.log(data)
-
-        alert(
-            "Problem Added "
-        )
-
-        document.getElementById(
-            "problemForm"
-        ).reset()
+        document.getElementById("problemForm").reset()
 
         loadProblems()
+        loadStreak()
+        loadHeatmap()
 
     }
 
@@ -275,15 +200,14 @@ async(e)=>{
 })
 
 /* =========================
-   LOAD PROBLEMS 😎🔥
+   LOAD PROBLEMS
 ========================= */
 
 async function loadProblems(){
 
     try{
 
-        const response =
-        await fetch(
+        const response = await fetch(
 
             "http://127.0.0.1:8000/problems/my-problem",
 
@@ -291,8 +215,7 @@ async function loadProblems(){
 
                 headers:{
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 }
 
@@ -300,47 +223,11 @@ async function loadProblems(){
 
         )
 
-        const problems =
-        await response.json()
+        allProblems = await response.json()
 
-        const tableBody =
-        document.getElementById(
-            "problemTableBody"
-        )
+        renderProblems()
 
-        tableBody.innerHTML = ""
-
-        problems.forEach(problem=>{
-
-            tableBody.innerHTML += `
-
-            <tr>
-
-                <td>${problem.title}</td>
-
-                <td>${problem.difficulty}</td>
-
-                <td>${problem.topic}</td>
-
-                <td>${problem.time_spend} min</td>
-
-                <td>
-
-                    <button onclick="deleteProblem(${problem.id})">
-
-                        Delete
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-            `
-
-        })
-
-        loadCharts(problems)
+        loadCharts(allProblems)
 
     }
 
@@ -353,7 +240,99 @@ async function loadProblems(){
 }
 
 /* =========================
-   DELETE 😎🔥
+   RENDER PROBLEMS
+========================= */
+
+function renderProblems(){
+
+    const tableBody =
+    document.getElementById("problemTableBody")
+
+    const toggleBtn =
+    document.getElementById("toggleProblemsBtn")
+
+    tableBody.innerHTML = ""
+
+    let visibleProblems = []
+
+    if(showAllProblems){
+
+        visibleProblems = allProblems
+
+    }
+
+    else{
+
+        visibleProblems =
+        allProblems.slice(0,6)
+
+    }
+
+    visibleProblems.forEach(problem=>{
+
+        tableBody.innerHTML += `
+
+        <tr>
+
+            <td>${problem.title}</td>
+
+            <td>${problem.difficulty}</td>
+
+            <td>${problem.topic}</td>
+
+            <td>${problem.time_spend} min</td>
+
+            <td>
+
+                <button onclick="deleteProblem(${problem.id})">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+        `
+
+    })
+
+    if(allProblems.length > 6){
+
+        toggleBtn.style.display = "block"
+
+        toggleBtn.innerText =
+        showAllProblems
+        ? "Show Less "
+        : "Show More "
+
+    }
+
+    else{
+
+        toggleBtn.style.display = "none"
+
+    }
+
+}
+
+/* =========================
+   TOGGLE BUTTON
+========================= */
+
+document.getElementById("toggleProblemsBtn")
+.addEventListener(
+"click",
+()=>{
+
+    showAllProblems =
+    !showAllProblems
+
+    renderProblems()
+
+})
+
+/* =========================
+   DELETE
 ========================= */
 
 async function deleteProblem(id){
@@ -370,8 +349,7 @@ async function deleteProblem(id){
 
                 headers:{
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 }
 
@@ -380,6 +358,8 @@ async function deleteProblem(id){
         )
 
         loadProblems()
+        loadStreak()
+        loadHeatmap()
 
     }
 
@@ -392,7 +372,7 @@ async function deleteProblem(id){
 }
 
 /* =========================
-   CHARTS 😎🔥
+   CHARTS
 ========================= */
 
 let difficultyChart
@@ -435,9 +415,7 @@ function loadCharts(problems){
     })
 
     const diffCtx =
-    document.getElementById(
-        "difficultyChart"
-    )
+    document.getElementById("difficultyChart")
 
     if(difficultyChart){
 
@@ -483,9 +461,7 @@ function loadCharts(problems){
     })
 
     const topicCtx =
-    document.getElementById(
-        "topicChart"
-    )
+    document.getElementById("topicChart")
 
     if(topicChart){
 
@@ -500,15 +476,13 @@ function loadCharts(problems){
 
         data:{
 
-            labels:
-            Object.keys(topicCount),
+            labels:Object.keys(topicCount),
 
             datasets:[{
 
                 label:"Problems",
 
-                data:
-                Object.values(topicCount),
+                data:Object.values(topicCount),
 
                 backgroundColor:"#38BDF8"
 
@@ -519,7 +493,11 @@ function loadCharts(problems){
     })
 
 }
-/// Streak ///]
+
+/* =========================
+   STREAK
+========================= */
+
 async function loadStreak(){
 
     try{
@@ -533,8 +511,7 @@ async function loadStreak(){
 
                 headers:{
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 }
 
@@ -545,45 +522,26 @@ async function loadStreak(){
         const data =
         await response.json()
 
-        console.log(
-            "STREAK ",
-            data
-        )
-
-        document.getElementById(
-            "streakCard"
-        ).innerHTML = `
+        document.getElementById("streakCard").innerHTML = `
 
         <div class="stat-card">
-
             <h3> Current</h3>
-
             <p>${data.current_streak}</p>
-
         </div>
 
         <div class="stat-card">
-
             <h3> Longest</h3>
-
             <p>${data.longest_streak}</p>
-
         </div>
 
         <div class="stat-card">
-
             <h3> Active Days</h3>
-
             <p>${data.active_days}</p>
-
         </div>
 
         <div class="stat-card">
-
             <h3> Consistency</h3>
-
             <p>${data.consistency_percentage}%</p>
-
         </div>
 
         `
@@ -599,13 +557,86 @@ async function loadStreak(){
 }
 
 /* =========================
-   AI 😎🔥
+   HEATMAP
 ========================= */
 
-document
-.getElementById(
-    "loadRecommendation"
-)
+async function loadHeatmap(){
+
+    try{
+
+        const response =
+        await fetch(
+
+            "http://127.0.0.1:8000/streak/heatmap",
+
+            {
+
+                headers:{
+
+                    Authorization:`Bearer ${token}`
+
+                }
+
+            }
+
+        )
+
+        const data =
+        await response.json()
+
+        const container =
+        document.getElementById("heatmapContainer")
+
+        container.innerHTML = ""
+
+        data.forEach(day=>{
+
+            let level = "level-1"
+
+            if(day.count >= 2){
+
+                level = "level-2"
+
+            }
+
+            if(day.count >= 4){
+
+                level = "level-3"
+
+            }
+
+            if(day.count >= 6){
+
+                level = "level-4"
+
+            }
+
+            container.innerHTML += `
+
+            <div
+                class="heatmap-box ${level}"
+                title="${day.date} : ${day.count} problems"
+            ></div>
+
+            `
+
+        })
+
+    }
+
+    catch(error){
+
+        console.log(error)
+
+    }
+
+}
+
+/* =========================
+   AI
+========================= */
+
+document.getElementById("loadRecommendation")
 .addEventListener(
 "click",
 async()=>{
@@ -621,8 +652,7 @@ async()=>{
 
                 headers:{
 
-                    Authorization:
-                    `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
 
                 }
 
@@ -637,17 +667,11 @@ async()=>{
 
         data.message.forEach(msg=>{
 
-            html += `
-
-            <p> ${msg}</p>
-
-            `
+            html += `<p>🚀 ${msg}</p>`
 
         })
 
-        document.getElementById(
-            "result"
-        ).innerHTML = html
+        document.getElementById("result").innerHTML = html
 
     }
 
@@ -660,30 +684,25 @@ async()=>{
 })
 
 /* =========================
-   LOGOUT 😎🔥
+   LOGOUT
 ========================= */
 
-document
-.getElementById(
-    "logoutBtn"
-)
+document.getElementById("logoutBtn")
 .addEventListener(
 "click",
 ()=>{
 
-    localStorage.removeItem(
-        "token"
-    )
+    localStorage.removeItem("token")
 
-    window.location.href =
-    "login.html"
+    window.location.href = "login.html"
 
 })
 
 /* =========================
-   INITIAL LOAD 😎🔥
+   INITIAL LOAD
 ========================= */
 
-loadProfile()-
+loadProfile()
 loadProblems()
 loadStreak()
+loadHeatmap()
