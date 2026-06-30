@@ -37,8 +37,8 @@ def login_user(db: Session, username: str, password:str):
         #return {"message": "Invalid password"}
     #if not db_user.username != user.username:
     #    return{"Message":"Invaild username"}
-    if not db_user.is_premium:
-        return{"Message":"Please take premium account "}
+    #if not db_user.is_premium:
+    #    return{"Message":"Please take premium account "}
     access_token = create_access_token(
         data={
             "sub": db_user.email

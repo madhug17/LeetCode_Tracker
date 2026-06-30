@@ -21,7 +21,11 @@ def get_current_user(
 token: str = Depends(oauth2_schema),
 db: Session = Depends(get_db)
 ):
+    print("TOKEN RECEIVED")
+    print(token)
     payload= verify_token(token)
+    print("PAYLOAD")
+    print(payload)
     if not payload:
         raise HTTPException(
             status_code = 401,

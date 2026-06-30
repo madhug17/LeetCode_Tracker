@@ -7,119 +7,118 @@ document.getElementById(
 )
 
 loginForm.addEventListener(
-"submit",
-async (e)=>{
+    "submit",
+    async (e)=>{
 
-    e.preventDefault()
+        e.preventDefault()
 
-    const username =
-    document.getElementById(
-        "username"
-    ).value
+        const username =
+        document.getElementById(
+            "username"
+        ).value
 
-    const password =
-    document.getElementById(
-        "password"
-    ).value
+        const password =
+        document.getElementById(
+            "password"
+        ).value
 
-    const formData =
-    new URLSearchParams()
+        try{
 
-    formData.append(
-        "username",
-        username
-    )
+            const formData =
+            new URLSearchParams()
 
-    formData.append(
-        "password",
-        password
-    )
+            formData.append(
+                "username",
+                username
+            )
 
-    try{
+            formData.append(
+                "password",
+                password
+            )
 
-        const response =
-        await fetch(
+            const response =
+            await fetch(
 
-            "http://127.0.0.1:8000/auth/login",
+                "http://127.0.0.1:8000/auth/login",
 
-            {
+                {
 
-                method:"POST",
+                    method:"POST",
 
-                headers:{
+                    headers:{
+                        "Content-Type":
+                        "application/x-www-form-urlencoded"
+                    },
 
-                    "Content-Type":
-                    "application/x-www-form-urlencoded"
+                    body:
+                    formData
 
-                },
+                }
 
-                body:
-                formData
+            )
+
+            const data =
+            await response.json()
+
+            console.log(
+                "LOGIN RESPONSE 😎🔥",
+                data
+            )
+
+            if(response.ok){
+
+                // SAVE TOKEN 😎🔥
+                localStorage.setItem(
+                    "token",
+                    data.access_token
+                )
+                console.log(
+                    "Token_saved",
+                    data.access_token
+                )
+
+                localStorage.setItem(
+                    "refresh_token",
+                    data.refresh_token
+                )
+
+                console.log(
+                    "TOKEN SAVED 😎🔥",
+                    data.access_token
+                )
+
+                alert(
+                    "Login Success 😎🔥"
+                )
+
+                window.location.href =
+                "dashboard.html"
 
             }
 
-        )
+            else{
 
-        const data =
-        await response.json()
-
-        console.log(
-            "LOGIN RESPONSE 😎🔥",
-            data
-        )
-
-        if(response.ok){
-
-            localStorage.setItem(
-
-                "token",
-
-                data.access_token
-
-            )
-
-            console.log(
-
-                "TOKEN SAVED 😎🔥",
-
-                localStorage.getItem(
-                    "token"
+                alert(
+                    data.detail ||
+                    data.Message ||
+                    "Login Failed 😭🔥"
                 )
 
-            )
-
-            alert(
-                "Login successful 😎🔥"
-            )
-
-            window.location.href =
-            "dashboard.html"
+            }
 
         }
 
-        else{
+        catch(error){
+
+            console.log(error)
 
             alert(
-
-                data.detail ||
-                data.Message ||
-                "Login failed 😭🔥"
-
+                "Server Error 😭🔥"
             )
 
         }
 
     }
-
-    catch(error){
-
-        console.log(error)
-
-        alert(
-            "Server error 😭🔥"
-        )
-
-    }
-
-})
+)
 

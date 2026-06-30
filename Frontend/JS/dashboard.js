@@ -1,14 +1,18 @@
 
 console.log("dashboard loaded 😎🔥")
 
+/* =========================
+   TOKEN 😎🔥
+========================= */
+
 const token =
 localStorage.getItem(
     "token"
 )
 
 console.log(
-    "TOKEN 😎🔥",
-    token
+    "TOKEN FROM SRORAGE",
+    token 
 )
 
 if(!token){
@@ -50,12 +54,15 @@ async function loadProfile(){
 
         )
 
-        console.log(response)
+        console.log(
+            "PROFILE RESPONSE 😎🔥",
+            response
+        )
 
         if(response.status === 401){
 
             alert(
-                "Token invalid 😭🔥"
+                "Session expired 😭🔥"
             )
 
             localStorage.removeItem(
@@ -176,6 +183,11 @@ async ()=>{
 
         )
 
+        console.log(
+            "SYNC RESPONSE 😎🔥",
+            response
+        )
+
         const data =
         await response.json()
 
@@ -222,5 +234,8 @@ document
 
 })
 
-loadProfile()
+/* =========================
+   AUTO LOAD 😎🔥
+========================= */
 
+loadProfile()
