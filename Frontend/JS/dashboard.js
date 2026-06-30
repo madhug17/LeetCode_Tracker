@@ -533,6 +533,43 @@ document
 
 })
 
+// AI Recommendation
+document.getElementById("loadRecommendation")
+.addEventListener(
+    "click",
+    async()=>{
+        try{
+            const response = await fetch(
+                "http://127.0.0.1:8000/dashboard/ai-recommendation",
+                {
+                    method:"GET",
+                    headers:{
+                        Authorization:
+                        `Bearer ${token}`
+                    }
+                }
+            )
+            const data = await response.json()
+            console.log(data)
+            document.getElementById(
+                "result"
+            ).innerHTML=`
+            <h3>Weak Topics 😭🔥</h3>
+            <p>${data.weak_topics}</p> 
+            <h3>Strong Topics 😎🔥</h3> 
+            <p>${data.strong_topics}</p> 
+            <h3>Recommendation 🚀</h3> 
+            <p>${data.message}</p>
+            `
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+)
+
+
+
 /* =========================
    AUTO LOAD 😎🔥
 ========================= */

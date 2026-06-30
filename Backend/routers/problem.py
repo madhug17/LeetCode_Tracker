@@ -42,7 +42,7 @@ def update_user_problem(
         problem_data,
         current_user
     )
-@router.delete("/{problem_is}")
+@router.delete("/{problem_id}")
 def delete_user_problem(
     problem_id:int,
     db:Session = Depends(get_db),
