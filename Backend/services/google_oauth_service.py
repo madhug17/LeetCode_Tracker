@@ -4,7 +4,10 @@ from sqlalchemy.orm import Session
 from models.user import User
 from utils.security import hash_password
 from utils.jwt_handling import create_access_token
-GOOGLE_CLIENT_ID = "853142899495-a76fo5a1sqsonhat7ffrl9oeqjfna5tq.apps.googleusercontent.com"
+from dotenv import load_dotenv
+import os
+load_dotenv()
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 def google_login(
         db:Session,
         token:str
