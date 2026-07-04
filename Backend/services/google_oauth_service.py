@@ -37,7 +37,7 @@ def google_login(
         db.commit()
         db.refresh(user)
     access_token = create_access_token(
-        date = {
+        data = {
             "sub":user.email
         }
     )
