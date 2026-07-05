@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  backend:
+    build: .
+    container_name: leetcode-backend
+
+    environment:
+      DATABASE_URL: postgresql://postgres:1658@db:5432/leetcode_tracker
+
+    volumes:
+      - .:/app
+
+    depends_on:
+      - db
+
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  db:
+    image: postgres:17
+    container_name: leetcode-postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1658
+      POSTGRES_DB: leetcode_tracker
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx
+    container_name: nginx-server
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+
