@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leetcode-tracker-backend
+  labels:
+    app: leetcode-tracker
+    tier: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: leetcode-tracker
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: leetcode-tracker
+        tier: backend
+    spec:
+      containers:
+        - name: tracker-app
+          image: leetcode-tracker-backend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:1658@leetcode-postgres:5432/leetcode_tracker
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
