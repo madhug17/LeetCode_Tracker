@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leetcode-postgres
+  labels:
+    app: leetcode-tracker
+    tier: Database
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: leetcode-tracker
+      tier: Database
+  template:
+    metadata:
+      labels:
+        app: leetcode-tracker
+        tier: Database
+    spec: 
+      containers:
+        - name: postgres
+          image: postgres:17
+          ports:
+            - containerPort: 5432
+          env: 
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "1658"
+            - name: POSTGRES_DB
+              value: 'leetcode_tracker'
+          resources:
+            requests:
+              memory: '256Mi'
+              cpu: '250m'
+            limits: 
+              memory: '512Mi'
+              cpu: '500m'
+          volumeMounts: 
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+      volumes: 
+        - name: postgres-storage
+          emptyDir: {}

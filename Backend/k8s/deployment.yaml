@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
         - name: tracker-app
-          image: leetcode-tracker-backend:latest
-          imagePullPolicy: Never
+          image: backend-backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
           env:
