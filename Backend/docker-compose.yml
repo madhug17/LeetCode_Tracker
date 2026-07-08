@@ -1,22 +1,15 @@
-
 services:
-
   backend:
     build: .
     container_name: leetcode-backend
-
     environment:
       DATABASE_URL: postgresql://postgres:1658@db:5432/leetcode_tracker
-
     ports:
       - "8000:8000"
-
     volumes:
       - .:/app
-
     depends_on:
       - db
-
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 
