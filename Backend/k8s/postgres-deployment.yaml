@@ -1,16 +1,50 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 
 metadata:
   name: leetcode-postgres
-
-spec:
-  selector:
+  labels:
     app: leetcode-tracker
     tier: database
 
-  ports:
-    - port: 5432
-      targetPort: 5432
+spec:
+  replicas: 1
 
-  type: ClusterIP
+  selector:
+    matchLabels:
+      app: leetcode-tracker
+      tier: database
+
+  template:
+    metadata:
+      labels:
+        app: leetcode-tracker
+        tier: database
+
+    spec:
+      containers:
+        - name: postgres
+
+          image: postgres:16
+
+          ports:
+            - containerPort: 5432
+
+          env:
+            - name: POSTGRES_DB
+              value: leetcode_tracker
+
+            - name: POSTGRES_USER
+              value: postgres
+
+            - name: POSTGRES_PASSWORD
+              value: "1658"
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
