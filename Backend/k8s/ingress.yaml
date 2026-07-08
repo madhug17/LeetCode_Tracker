@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: leetcode-ingress
+spec: 
+  rules:
+    - host: leetcode.local
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend: 
+              service:
+                name: leetcode-backend
+                port:
+                  number: 8000
+
