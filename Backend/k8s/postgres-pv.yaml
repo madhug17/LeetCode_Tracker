@@ -7,7 +7,7 @@ spec:
     storage: 2Gi
   accessModes: 
     - ReadWriteOnce
-  PersistantVolumeReclaimPolicy: Retain
+  persistantVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
     path: /mnt/data/postgres
