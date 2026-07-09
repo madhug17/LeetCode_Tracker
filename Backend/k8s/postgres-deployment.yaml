@@ -58,3 +58,11 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+             
+            volumeMounts:
+              - name: postgres-storage
+                mountpath: /var/lib/postgresql/data
+          volumes:
+            - name: postgres-storage
+              PersistantVolumeClaim: 
+                claimName: postgres-pvs
