@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: leetcode-config
+
+data:
+  DATABASE_HOST: "leetcode-postgres"
+  DATABASE_URL: "postgresql://postgres:1658@leetcode-postgres:5432/leetcode_tracker"
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "leetcode_tracker"
+
+  POSTGRES_PASSWORD: "1658"
+  POSTGRES_DB: "leetcode_tracker"
+  POSTGRES_USER: "postgres"
+
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+
+  DEBUG: "False"
+  API_VERSION: "v1"
+  LOG_LEVEL: "INFO"
+  JWT_EXPIRE_MINUTES: "60"
