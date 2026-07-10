@@ -1,4 +1,4 @@
-name: Leetcode Tracker CI/CD
+name: Updated Leetcode Tracker CI/CD
 
 on:
   push:
