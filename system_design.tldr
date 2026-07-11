@@ -479,9 +479,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 675.5798031739312,
-			"y": -1096.4802195967761,
-			"z": 0.6013644467563963,
+			"x": -673.1025563365147,
+			"y": -894.4645475813726,
+			"z": 0.9538419555013954,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -725,23 +725,100 @@
 			"typeName": "shape"
 		},
 		{
+			"x": 823.3558724380337,
+			"y": 1462.3706430785928,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:DFK_06kNbYzPLge5VvCoF",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 804.4948120117188,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"attrs": {
+						"dir": "auto"
+					},
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "A backend developer updates a namespaced PVC "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "manifest to request a storage expansion from 10GB to 50GB,"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": " prompting the Kubernetes controller to automatically resize "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "the underlying cluster-wide, cloud-backed PV without disrupting"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": " the data or the running database Pod.\""
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "abVZr",
+			"typeName": "shape"
+		},
+		{
 			"editingShapeId": null,
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:AuQ9au6BhoE37kuzDCYWn",
-				"shape:WmhuwnwL6Phdnv-WeUdvc",
-				"shape:JBoxmvRxAkgwBLEqkp7iX",
-				"shape:9QjhpisEoriJWRhubORNm",
-				"shape:pAVQie3_hVQzD-BKV93eI",
-				"shape:uP5xyyx07AZcPIhTtFvRs",
-				"shape:R2WP-oBnm9VayWj8aWWAp",
-				"shape:ac5jewAvk9xHRJDjI1VTY",
-				"shape:rU28YBUHeK3AOBSTx5iuT",
-				"shape:SUiiTW6rBgeK1YLVkyhQo",
-				"shape:8fsN4K5G0jECiVNAto_dB",
-				"shape:odljMLIJWpwnuZkWZuyEm",
-				"shape:rwt8lmYHTQpqjN8tb1vzs",
-				"shape:SIKm8upJUyIt2iKXZeWcC"
+				"shape:rYOfwp15IoyzTJyqSwmEu"
 			],
 			"hoveredShapeId": null,
 			"erasingShapeIds": [],
@@ -998,6 +1075,43 @@
 			},
 			"parentId": "page:page",
 			"index": "aMFLM",
+			"typeName": "shape"
+		},
+		{
+			"x": 799.7206911055329,
+			"y": 1245.9130731400312,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:rYOfwp15IoyzTJyqSwmEu",
+			"type": "geo",
+			"props": {
+				"w": 835.3419216491362,
+				"h": 425.11180085635647,
+				"geo": "rectangle",
+				"dash": "draw",
+				"growY": 0,
+				"url": "",
+				"scale": 1,
+				"color": "black",
+				"labelColor": "black",
+				"fill": "none",
+				"size": "m",
+				"font": "draw",
+				"align": "middle",
+				"verticalAlign": "middle",
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph"
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "acPR6",
 			"typeName": "shape"
 		},
 		{
@@ -1551,7 +1665,7 @@
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "default",
+				"type": "cross",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -1561,8 +1675,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 921.60009765625,
-				"h": 902.4000854492188
+				"w": 937.7684936523438,
+				"h": 904.421142578125
 			},
 			"insets": [
 				false,
@@ -1622,6 +1736,78 @@
 			},
 			"parentId": "page:page",
 			"index": "a4fzu",
+			"typeName": "shape"
+		},
+		{
+			"x": 856.9032652449937,
+			"y": 1307.4293670173959,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:FsDEPjYgrkKuewP-SyswF",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 580.5369262695312,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"attrs": {
+						"dir": "auto"
+					},
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Difference between PV and PVC "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							}
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "PV stand for the persistent Volume"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "and PVC stand for the Persisten Volume Claim "
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aaja2",
 			"typeName": "shape"
 		},
 		{

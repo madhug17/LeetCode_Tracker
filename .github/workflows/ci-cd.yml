@@ -30,3 +30,28 @@ jobs:
         run: |
           python --version
           pip list
+docker: 
+  need: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Login to DockerHub
+      uses: docker/login-actions@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password:  ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build Docker Image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/leetcode-tracker:latest ./Backend
+    - name: Push Docker Image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/leetcode-tracker:latest
+deploy: 
+  needs:  docker
+  runs-on: ubuntu-latest
+  steps:
+    - name: deployment Successful
+      run: |
+        echo "Docker image pushed Successful."
+        echo "Now Update your local kubernetes cluster ."
