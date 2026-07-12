@@ -10,3 +10,5 @@ env/
 .pytest_cache/
 .DS_Store
 get-pip.py
+*.session.sql
+patch*.json
