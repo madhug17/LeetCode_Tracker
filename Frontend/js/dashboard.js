@@ -11,7 +11,7 @@ const token = localStorage.getItem("token")
 
 if(!token){
 
-    window.location.href = "login.html"
+    window.location.href = "index.html"
 
 }
 
@@ -694,7 +694,7 @@ document.getElementById("logoutBtn")
 
     localStorage.removeItem("token")
 
-    window.location.href = "login.html"
+    window.location.href = "index.html"
 
 })
 
