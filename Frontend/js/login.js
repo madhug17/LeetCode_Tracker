@@ -1,5 +1,4 @@
-
-console.log("login.js loaded 😎🔥")
+console.log("login.js loaded")
 
 const loginForm =
 document.getElementById(
@@ -40,7 +39,7 @@ loginForm.addEventListener(
             const response =
             await fetch(
 
-                "http://127.0.0.1:8000/auth/login",
+                `${BASE_URL}/auth/login`,
 
                 {
 
@@ -62,7 +61,7 @@ loginForm.addEventListener(
             await response.json()
 
             console.log(
-                "LOGIN RESPONSE 😎🔥",
+                "LOGIN RESPONSE ",
                 data
             )
 
@@ -84,12 +83,12 @@ loginForm.addEventListener(
                 )
 
                 console.log(
-                    "TOKEN SAVED 😎🔥",
+                    "TOKEN SAVED ",
                     data.access_token
                 )
 
                 alert(
-                    "Login Success 😎🔥"
+                    "Login Success "
                 )
 
                 window.location.href =
@@ -102,7 +101,7 @@ loginForm.addEventListener(
                 alert(
                     data.detail ||
                     data.Message ||
-                    "Login Failed 😭🔥"
+                    "Login Failed "
                 )
 
             }
@@ -114,11 +113,10 @@ loginForm.addEventListener(
             console.log(error)
 
             alert(
-                "Server Error 😭🔥"
+                "Server Error "
             )
 
         }
 
     }
 )
-

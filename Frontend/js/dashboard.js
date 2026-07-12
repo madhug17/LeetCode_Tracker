@@ -25,7 +25,7 @@ async function loadProfile(){
 
         const response = await fetch(
 
-            "http://127.0.0.1:8000/leetcode/profile",
+            `${BASE_URL}/leetcode/profile`,
 
             {
 
@@ -98,7 +98,7 @@ async()=>{
 
         const response = await fetch(
 
-            "http://127.0.0.1:8000/leetcode/sync",
+            `${BASE_URL}/leetcode/sync`,
 
             {
 
@@ -161,7 +161,7 @@ async(e)=>{
 
         await fetch(
 
-            "http://127.0.0.1:8000/problems/add",
+            `${BASE_URL}/problems/add`,
 
             {
 
@@ -209,7 +209,7 @@ async function loadProblems(){
 
         const response = await fetch(
 
-            "http://127.0.0.1:8000/problems/my-problem",
+            `${BASE_URL}/problems/my-problem`,
 
             {
 
@@ -341,7 +341,7 @@ async function deleteProblem(id){
 
         await fetch(
 
-            `http://127.0.0.1:8000/problems/${id}`,
+            `${BASE_URL}/problems/${id}`,
 
             {
 
@@ -505,7 +505,7 @@ async function loadStreak(){
         const response =
         await fetch(
 
-            "http://127.0.0.1:8000/streak/all",
+            `${BASE_URL}/streak/all`,
 
             {
 
@@ -567,7 +567,7 @@ async function loadHeatmap(){
         const response =
         await fetch(
 
-            "http://127.0.0.1:8000/streak/heatmap",
+            `${BASE_URL}/streak/heatmap`,
 
             {
 
@@ -646,7 +646,7 @@ async()=>{
         const response =
         await fetch(
 
-            "http://127.0.0.1:8000/dashboard/ai-recommendation",
+            `${BASE_URL}/dashboard/ai-recommendation`,
 
             {
 
