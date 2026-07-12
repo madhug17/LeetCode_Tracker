@@ -6,11 +6,6 @@ Live demo: [leetcode-tracker-frontend-puxu.onrender.com](https://leetcode-tracke
 
 ---
 
-## 📸 Preview
-
-> Screenshots coming soon.
-
----
 
 ## ✨ Features
 
@@ -42,7 +37,7 @@ Live demo: [leetcode-tracker-frontend-puxu.onrender.com](https://leetcode-tracke
 
 **Backend:** Python, FastAPI, SQLAlchemy, PostgreSQL, JWT, Passlib, Uvicorn
 **Frontend:** HTML5, CSS3, Vanilla JavaScript, Chart.js
-**Infrastructure:** Docker, Kubernetes, Prometheus, Grafana
+**Infrastructure:** Docker, Kubernetes
 **Deployment:** Render (backend + static frontend)
 **CI/CD:** GitHub Actions *(planned)*
 
@@ -176,18 +171,6 @@ Register → Login → Access Token → Protected Routes → Refresh Token (on e
 
 ---
 
-## 🚀 Roadmap
-
-- [ ] Email verification
-- [ ] Password reset
-- [ ] Google / GitHub OAuth login
-- [ ] Redis caching
-- [ ] Celery background tasks for LeetCode sync
-- [ ] CI/CD via GitHub Actions
-- [ ] Prometheus + Grafana monitoring dashboards
-- [ ] LeetCode GraphQL integration for richer stats
-
----
 
 ## 📖 What I Learned Building This
 
