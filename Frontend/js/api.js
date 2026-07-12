@@ -23,7 +23,7 @@ async function apiRequest(
         config.body=JSON.stringify(body)
     }
     const responce = await fetch(
-        `${API_BASE}${endpoint}`,
+        `${BASE_URL}${endpoint}`,
         config
     )
     const data = 
